@@ -62,7 +62,7 @@ function Home() {
             />
 
             <button className="button" type="submit">
-              Entrar
+              Cadastrar
             </button>
 
             <button className="button" type="button" onClick={Redirect}>
