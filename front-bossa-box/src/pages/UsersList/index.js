@@ -6,15 +6,6 @@ function UsersList() {
   // const [lista, setLista] = useState({})
   const [resposta, setResposta] = useState([])
 
-  // async function handleLista() {
-  //   let { data } = await api.get('/users/list')
-  //   setResposta(data)
-
-  //   console.log('resposta', resposta)
-
-  //   return resposta
-  // }
-
   async function handleLIst() {
     let { data } = await api.get('/users/list')
     return setResposta(data)
@@ -26,7 +17,9 @@ function UsersList() {
 
   return (
     <div className="container">
-      <h1>Usuarios Cadastrados</h1>
+      <div className="title">
+        <h1>Usuarios Cadastrados</h1>
+      </div>
       <ul>
         {resposta.map((users) => (
           <li key={users._id}>
