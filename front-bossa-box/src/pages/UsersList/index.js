@@ -1,40 +1,44 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import './style.css'
 import api from '../../services/api'
 
-export default function UsersList() {
-  const [lista, setLista] = useState('')
+function UsersList() {
+  // const [lista, setLista] = useState({})
+  const [resposta, setResposta] = useState([])
+
+  // async function handleLista() {
+  //   let { data } = await api.get('/users/list')
+  //   setResposta(data)
+
+  //   console.log('resposta', resposta)
+
+  //   return resposta
+  // }
+
+  async function handleLIst() {
+    let { data } = await api.get('/users/list')
+    return setResposta(data)
+  }
 
   useEffect(() => {
-    handleLista()
+    handleLIst()
   }, [])
-
-  async function handleLista() {
-    try {
-      const { data } = await api.get('/users/list')
-      setLista(data)
-      console.log(lista)
-      return lista
-    } catch (error) {
-      return error
-    }
-  }
 
   return (
     <div className="container">
       <h1>Usuarios Cadastrados</h1>
       <ul>
-        {lista.map((users) => (
-          <li key={users.id}>
-            <strong>User:</strong>
-            <p>{lista.name}</p>
-            <strong>Descrição</strong>
-            <p>{lista.email}</p>
-            <strong>Valor:</strong>
+        {resposta.map((users) => (
+          <li key={users._id}>
+            <strong>Nome:</strong>
+            <p>{users.name}</p>
+            <strong>Email</strong>
+            <p>{users.email}</p>
           </li>
         ))}
       </ul>
     </div>
   )
 }
+
+export default UsersList

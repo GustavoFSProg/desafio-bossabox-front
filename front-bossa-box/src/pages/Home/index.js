@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import logo from '../../assets/logo.jpg'
 import './style.css'
 import api from '../../services/api'
@@ -24,6 +24,10 @@ function Home() {
     } catch (error) {
       alert('Erro no cadastro!!')
     }
+  }
+
+  function Redirect() {
+    history.push('/usersList')
   }
 
   return (
@@ -59,6 +63,10 @@ function Home() {
 
             <button className="button" type="submit">
               Entrar
+            </button>
+
+            <button className="button" type="button" onClick={Redirect}>
+              Listar
             </button>
           </form>
         </section>
